@@ -2,7 +2,7 @@
 // Set the longitude, latitude, and the starting zoom level 
 // Inser into  div with an id of 'map' in index.html
 
-var myMap = L.map("map", {
+var myMap = L.map("mapid", {
     center: [39.199093, -123.390632],
     zoom: 13
   });
@@ -31,7 +31,7 @@ var myMap = L.map("map", {
   
 
   // Store API endpoint
-  var querylUrl = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.geojson";
+  var queryUrl = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.geojson";
   
   // Get color radius to call query URL
   d3.json(queryUrl, function(data) {
@@ -44,7 +44,7 @@ var myMap = L.map("map", {
         radius: getRadius(feature.properties.mag),
         stroke: true,
         weight: 0.5
-      };
+      };}
 
  // set different colors from magnitude
  function getColor(magnitude) {
@@ -102,17 +102,17 @@ var myMap = L.map("map", {
       "#ee9c00",
       "#ea822c",
       "#ea2c2c"
-    ];
+   ];
 
     // Looping through
     for (var i = 0; i < grades.length; i++) {
       div.innerHTML +=
-        "<i style='background: " + colors[i] + "'></i> " +
+       "<i style='background: " + colors[i] + "'></i> " +
         grades[i] + (grades[i + 1] ? "&ndash;" + grades[i + 1] + "<br>" : "+");
     }
     return div;
   };
 
-  // Finally, we our legend to the map.
+   //Finally, we our legend to the map.
   legend.addTo(myMap);
 })
